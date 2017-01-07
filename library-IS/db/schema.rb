@@ -10,12 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223112601) do
+ActiveRecord::Schema.define(version: 20170107170244) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "author_id"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.string   "ISBN"
+    t.integer  "year"
+    t.integer  "publisher_id"
+    t.string   "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "book_id"
+    t.boolean  "borrowed", default: false
+    t.index ["ISBN"], name: "index_publications_on_ISBN", unique: true
+    t.index ["book_id"], name: "index_publications_on_book_id"
+    t.index ["publisher_id"], name: "index_publications_on_publisher_id"
   end
 
   create_table "publishers", force: :cascade do |t|
