@@ -1,12 +1,12 @@
-<h1>New author</h1>
+<h2>New author</h2>
 
-<%= form_for :author do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
+<%= form_for @author, :html => {:class => 'col-md-4'} do |f| %>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-default' %>
+
 <% end %>
