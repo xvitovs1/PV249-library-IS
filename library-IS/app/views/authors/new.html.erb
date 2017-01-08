@@ -10,7 +10,10 @@
   <% if @author.errors.any? %>
     <div class="alert alert-danger">
       <% @author.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
+        <p>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <%= msg %>
+        </p>
       <% end %>
     </div>
   <% end %>
