@@ -15,7 +15,7 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(name: params[:author][:name])
     if @author.save
-			#redirect_to action: 'index'
+			redirect_to action: 'index'
     else
       render 'new'
     end
