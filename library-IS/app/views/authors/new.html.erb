@@ -7,6 +7,14 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
+  <% if @author.errors.any? %>
+    <div class="alert alert-danger">
+      <% @author.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= f.submit 'Save', class: 'btn btn-default' %>
 
 <% end %>

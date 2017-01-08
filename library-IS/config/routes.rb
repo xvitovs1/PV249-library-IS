@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'authors/new'
+  get 'authors/index'
 
   resources :authors
   resources :books
