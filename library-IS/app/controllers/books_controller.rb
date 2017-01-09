@@ -4,6 +4,9 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    if params[:id]
+      @author = Author.find(params[:id])
+    end
   end
 
   def create

@@ -12,8 +12,14 @@
   </div>
   <div class="form-group">
     <%= f.label :author %>
-    <%= f.select :author,
-      Author.all.collect{|a| [a.name, a.id]}, {include_blank: true}, {:class => 'form-control select-author' } %>
+    <% if author %>
+      <%= f.select :author,
+        Author.all.collect{|a| [a.name, a.id]}, {include_blank: true, :selected => params[:id]},
+        {:class => 'form-control select-author'} %>
+   <% else %>
+      <%= f.select :author,
+        Author.all.collect{|a| [a.name, a.id]}, {include_blank: true}, {:class => 'form-control select-author' } %>
+    <% end %>
   </div>
   <div class="form-group">
     <%= f.label :description %>

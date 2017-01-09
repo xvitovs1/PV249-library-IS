@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'authors/new'
   get 'authors/index'
   get 'authors/:id', to: 'authors#show'
+  get 'authors/:id/books/new', to: 'books#new'
 
   resources :authors
   resources :books
