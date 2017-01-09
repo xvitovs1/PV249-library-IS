@@ -11,7 +11,7 @@
   <tbody>
     <% @authors.each do |author| %>
       <tr>
-        <td><%= author.name %></td>
+        <td><%= link_to author.name, author %></td>
         <td><%= link_to 'Remove', author, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %></td>
       </tr>
     <% end %>

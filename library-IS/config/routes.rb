@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/authors/add'
   get 'authors/new'
   get 'authors/index'
+  get 'authors/:id', to: 'authors#show'
 
   resources :authors
   resources :books

@@ -1,0 +1,17 @@
+<div class="row text-center">
+  <h2><%= @author.name %></h2>
+</div>
+
+<table id="tasks_table" class="table">
+  <tr>
+    <th>Books</th>
+  </tr>
+  <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
+  <tr>
+    <td>
+      <%= link_to book.title, book %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
