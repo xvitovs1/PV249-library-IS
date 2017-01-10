@@ -1,9 +1,18 @@
-ready = -> 
- $('.dropdown-toggle').dropdown()
- $('.select-author').select2 
-  placeholder: 'Select an author'
-  language: noResults: -> "<input class='btn btn-default' id='add-author' type='button' value='Add author'>"
-  escapeMarkup: (m) -> m
+ready = ->
+  $('.dropdown-toggle').dropdown()
 
-$(document).ready(ready)
+  $select_author = $('.select-author')
+
+  $select_author.select2
+    placeholder: 'Select an author'
+    language: noResults: -> "<input class='btn btn-default' id='add-author' type='button' value='Add author'>"
+    escapeMarkup: (m) -> m
+
+  $(document).on 'click', '#add-author', () ->
+    author_name = $select_author.data('select2').$dropdown.find('input').val()
+    $.post '/authors/add', {'name': author_name}, (payload) ->
+      newOption = new Option(author_name, payload.author_id, false, true);
+      $select_author.append(newOption).trigger('change');
+      $select_author.select2('close');
+
 $(document).on('turbolinks:load', ready)

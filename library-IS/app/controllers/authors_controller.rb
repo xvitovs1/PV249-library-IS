@@ -8,8 +8,9 @@ class AuthorsController < ApplicationController
   end
 
   def add
-    @author = Author.new(name: params[:author][:name])
+    @author = Author.new(name: params[:name])
     @author.save
+		render :json => { :status => :ok, :message => "Success!", :author_id => @author.id }
   end
 
   def create
