@@ -1,6 +1,5 @@
-<div class="row text-center">
-  <h2><%= @author.name %></h2>
-</div>
+<h2><%= @author.name %></h2>
+<%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-default' %>
 
 <div>
   <%= link_to "Add book", {controller: "books", action: "new"}, class: 'btn btn-default' %>
