@@ -1,5 +1,7 @@
 <h2><%= @book.title %></h2>
 
+<%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
+
 <table id="book_info_table" class="table book-info-table">
   <tr>
     <td>
