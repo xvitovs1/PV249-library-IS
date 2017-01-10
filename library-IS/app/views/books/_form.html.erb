@@ -25,5 +25,12 @@
     <%= f.label :description %>
     <%= f.text_area :description, class: 'form-control', rows:'5' %>
   </div>
-  <%= f.submit 'Save', class: 'btn btn-default' %>
+  <div>
+    <%= f.submit 'Save', class: 'btn btn-default' %>
+    <% if @book.persisted? %>
+      <%= link_to 'Back', {controller:'books', action:'show'}, class: 'btn btn-default'%>
+    <% elsif author %>
+      <%= link_to 'Back', {controller:'authors', action:'show'}, class: 'btn btn-default' %>
+    <% end %>
+  </div>
 <% end %>
