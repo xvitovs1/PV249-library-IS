@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'books/:id/publications/new', to: 'publications#new'
+
   get 'contact/', to: 'contact#index'
 
   get 'books/show'

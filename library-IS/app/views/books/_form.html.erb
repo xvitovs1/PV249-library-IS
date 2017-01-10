@@ -30,7 +30,7 @@
     <% if @book.persisted? %>
       <%= link_to 'Back', {controller:'books', action:'show'}, class: 'btn btn-default'%>
     <% elsif author %>
-      <%= link_to 'Back', {controller:'authors', action:'show'}, class: 'btn btn-default' %>
+      <%= link_to 'Back', {controller:'authors', action:'show', id: author.id}, class: 'btn btn-default' %>
     <% end %>
   </div>
 <% end %>
