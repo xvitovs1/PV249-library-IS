@@ -15,5 +15,11 @@
     <%= f.label :year %>
     <%= f.text_field :year, class: 'form-control' %>
   </div>
+	<div class="form-group">
+    <%= f.label :publisher %>
+    <%= f.select :publisher,
+        Publisher.all.collect{|p| [p.name, p.id]}, {include_blank: true},
+        {:class => 'form-control select-publisher'} %>
+  </div>
   <%= f.submit 'Save', class: 'btn btn-default' %>
 <% end %>
