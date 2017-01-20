@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'authors/:id/books/new', to: 'books#new'
   get 'authors/:id/edit', to: 'authors#edit'
   post 'authors/add', to: 'authors#add'
+  post '', to: 'base#search'
 
   resources :authors
   resources :books
@@ -22,4 +23,6 @@ Rails.application.routes.draw do
   resources :publishers
   get 'main_page/index'
   root 'main_page#index'
+
+  match '/search', to: 'search#search_all', via: 'post'
 end
