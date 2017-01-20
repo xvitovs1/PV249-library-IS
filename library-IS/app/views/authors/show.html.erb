@@ -8,11 +8,15 @@
 <table id="tasks_table" class="table">
   <tr>
     <th>Books</th>
+    <th></th>
   </tr>
   <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
   <tr>
     <td>
       <%= link_to book.title, book %>
+    </td>
+    <td>
+      <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
     </td>
   </tr>
   <% end %>

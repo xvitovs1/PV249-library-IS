@@ -37,4 +37,10 @@ class BooksController < ApplicationController
       render "edit"
     end
   end
+
+	def destroy
+    puts params[:id]
+    Book.destroy(params[:id])
+    redirect_to :back
+  end
 end
