@@ -39,7 +39,6 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    puts params[:id]
     Book.destroy(params[:id])
     redirect_to :back
   end

@@ -40,7 +40,6 @@ class AuthorsController < ApplicationController
   end
 
 	def destroy
-    puts params[:id]
     Author.destroy(params[:id])
     redirect_to action: "index"
   end

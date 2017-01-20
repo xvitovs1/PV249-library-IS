@@ -28,6 +28,7 @@
         <th>Publisher</th>
         <th>Year</th>
         <th>Available</th>
+        <th></th>
       </tr>
       <% (@book.publications).each do |publication| %>
       <tr>
@@ -42,6 +43,10 @@
         </td>
         <td>
           TODO
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_publication_path(publication, @book.id), class: 'btn btn-default'  %>
+          <%= link_to 'Remove', publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
         </td>
       </tr>
       <% end %>

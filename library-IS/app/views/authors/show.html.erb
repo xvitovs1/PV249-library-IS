@@ -8,7 +8,6 @@
     <tr>
       <th>Books</th>
       <th></th>
-      <th></th>
     </tr>
     <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
     <tr>
