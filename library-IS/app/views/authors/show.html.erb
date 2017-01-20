@@ -1,24 +1,27 @@
-<h2><%= @author.name %></h2>
-<%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-default' %>
+<h2><%= @author.name %> <%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-default' %></h2>
 
 <div>
   <%= link_to "Add book", {controller: "books", action: "new"}, class: 'btn btn-default' %>
-</div>
 
-<table id="tasks_table" class="table">
-  <tr>
-    <th>Books</th>
-    <th></th>
-  </tr>
-  <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
-  <tr>
-    <td>
+  <p>
+  <table id="tasks_table" class="table">
+    <tr>
+      <th>Books</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
+    <tr>
+      <td>
       <%= link_to book.title, book %>
-    </td>
-    <td>
-      <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_book_path(book, @author.id), class: 'btn btn-default'  %>
+        <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</p>
 
+</div>

@@ -27,10 +27,6 @@
   </div>
   <div>
     <%= f.submit 'Save', class: 'btn btn-default' %>
-    <% if @book.persisted? %>
-      <%= link_to 'Back', {controller:'books', action:'show'}, class: 'btn btn-default'%>
-    <% elsif author %>
-      <%= link_to 'Back', {controller:'authors', action:'show', id: author.id}, class: 'btn btn-default' %>
-    <% end %>
+    <%= link_to 'Back', :back, class: 'btn btn-default'%>
   </div>
 <% end %>

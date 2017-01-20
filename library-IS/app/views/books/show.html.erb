@@ -1,6 +1,7 @@
-<h2><%= @book.title %></h2>
+<h2>
+  <%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
+</h2>
 
-<%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
 
 <table id="book_info_table" class="table book-info-table">
   <tr>
@@ -18,30 +19,33 @@
 </table>
 
 <h3>List of copies</h3>
-<%= link_to "Add copy", {controller:'publications', action:'new'}, class: 'btn btn-default' %>
-
-<table id="publications_table" class="table table-bordered">
-  <tr>
-    <th>ISBN</th>
-    <th>Publisher</th>
-    <th>Year</th>
-    <th>Available</th>
-  </tr>
-  <% (@book.publications).each do |publication| %>
-  <tr>
-    <td>
-      <%= publication.isbn %>
-    </td>
-    <td>
-      <%= publication.publisher.name %>
-    </td>
-    <td>
-      <%= publication.year %>
-    </td>
-    <td>
-      TODO
-    </td>
-  </tr>
-  <% end %>
-</table>
+<div>
+  <%= link_to "Add copy", {controller:'publications', action:'new'}, class: 'btn btn-default' %>
+  <p>
+    <table id="publications_table" class="table table-bordered">
+      <tr>
+        <th>ISBN</th>
+        <th>Publisher</th>
+        <th>Year</th>
+        <th>Available</th>
+      </tr>
+      <% (@book.publications).each do |publication| %>
+      <tr>
+        <td>
+          <%= publication.isbn %>
+        </td>
+        <td>
+          <%= publication.publisher.name %>
+        </td>
+        <td>
+          <%= publication.year %>
+        </td>
+        <td>
+          TODO
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </p>
+</div>
 
