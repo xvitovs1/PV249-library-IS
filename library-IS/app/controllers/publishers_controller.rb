@@ -15,7 +15,7 @@ class PublishersController < ApplicationController
   def create
     @publisher = Publisher.new(name: params[:publisher][:name])
     if @publisher.save
-			#TODO
+			redirect_to 'index'
     else
       render 'new'
     end
