@@ -1,0 +1,7 @@
+<h2>Search results (<%= @publishers.count %>)</h2>
+
+<% (@publishers).each do |publisher| %>
+  <ul>
+    <li><%= link_to publisher.name, publisher %></li>
+  </ul>
+<% end %>

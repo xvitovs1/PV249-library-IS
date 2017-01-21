@@ -11,5 +11,6 @@ class SearchController < ApplicationController
   end
 
   def search_publishers
+    @publishers = Publisher.where(["name like ?", '%' + params['name'] + '%'])
   end
 end
