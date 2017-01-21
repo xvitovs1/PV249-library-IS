@@ -1,1 +1,17 @@
-TODO
+<h2>Publishers catalogue</h2>
+
+<div>
+  <p>
+  <h3><%= link_to "Add new publisher", new_publisher_path %></h3>
+  </p>
+  <p>
+    <h3>Find a publisher</h3>
+    <%= form_tag({controller: "search", action: "search_publishers"}, method: "post", class:"form", role: "search") do %>
+			<div class="form-group">
+    		<label for="name">Name</label>
+    		<input type="text" class="form-control" name="name" placeholder="Name">
+  		</div>
+			<button type="submit" class="btn btn-default">Search</button>
+    <% end %>
+  </p>
+</div>
