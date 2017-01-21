@@ -2,6 +2,10 @@ class PublishersController < ApplicationController
 	def index
   end
 
+  def show
+    @publisher = Publisher.find(params[:id])
+  end
+
   def add
     @publisher = Publisher.new(name: params[:name])
     @publisher.save

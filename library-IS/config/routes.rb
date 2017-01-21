@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post 'authors/add', to: 'authors#add'
 
   post 'publishers/add', to: 'publishers#add'
+  get 'publishers/:id', to: 'publishers#show'
+  get 'publishers/:id/edit', to: 'publishers#edit'
   get 'books/:id/edit', to: 'books#add'
 
   resources :authors
