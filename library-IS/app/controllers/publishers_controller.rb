@@ -1,5 +1,8 @@
 class PublishersController < ApplicationController
-	def add
+	def index
+  end
+
+  def add
     @publisher = Publisher.new(name: params[:name])
     @publisher.save
 		render :json => { :status => :ok, :message => "Success!", :publisher_id => @publisher.id }

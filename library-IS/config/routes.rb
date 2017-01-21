@@ -26,5 +26,8 @@ Rails.application.routes.draw do
   get 'main_page/index'
   root 'main_page#index'
 
-  match '/search', to: 'search#search_all', via: 'post'
+  post '/search', to: 'search#search_all'
+  post '/search_books', to: 'search#search_books'
+  post '/search_authors', to: 'search#search_authors'
+  post '/search_publishers', to: 'search#search_publishers'
 end
