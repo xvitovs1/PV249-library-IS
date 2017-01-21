@@ -39,7 +39,7 @@ class AuthorsController < ApplicationController
     end
   end
 
-	def destroy
+  def destroy
     Author.destroy(params[:id])
     redirect_to action: "index"
   end
