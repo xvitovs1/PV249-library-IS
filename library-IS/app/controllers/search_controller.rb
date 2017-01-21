@@ -7,6 +7,7 @@ class SearchController < ApplicationController
   end
 
   def search_authors
+    @authors = Author.where(["name like ?", '%' + params['name'] + '%'])
   end
 
   def search_publishers
