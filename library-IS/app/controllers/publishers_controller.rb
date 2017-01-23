@@ -19,7 +19,7 @@ class PublishersController < ApplicationController
   def create
     @publisher = Publisher.new(name: params[:publisher][:name])
     if @publisher.save
-			redirect_to 'index'
+			redirect_to action: "show", id: @publisher.id
     else
       render 'new'
     end
@@ -36,6 +36,11 @@ class PublishersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    Publisher.destroy(params[:id])
+    redirect_to action: "index"
   end
 
 end

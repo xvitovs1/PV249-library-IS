@@ -1,7 +1,9 @@
-<h2><%= @author.name %> <%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-default' %></h2>
+<h2><%= @author.name %> <%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-default' %>
+<%= link_to 'Remove', @author, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</h2>
 
 <div>
-  <%= link_to "Add book", {controller: "books", action: "new"}, class: 'btn btn-default' %>
+  <%= link_to 'Add book', {controller: "books", action: "new"}, class: 'btn btn-default' %>
 
   <p>
   <table id="books_table" class="table">

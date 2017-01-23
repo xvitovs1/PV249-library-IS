@@ -1,5 +1,6 @@
 <h2>
   <%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
+  <%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 </h2>
 
 

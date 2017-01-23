@@ -22,7 +22,11 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    begin
+      @book = Book.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to action: "index"
+    end
   end
 
   def edit

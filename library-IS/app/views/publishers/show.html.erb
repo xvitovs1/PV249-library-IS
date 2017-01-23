@@ -1,4 +1,6 @@
-<h2><%= @publisher.name %> <%= link_to 'Edit', edit_publisher_path(@publisher), class: 'btn btn-default' %></h2>
+<h2><%= @publisher.name %> <%= link_to 'Edit', edit_publisher_path(@publisher), class: 'btn btn-default' %>
+<%= link_to 'Remove', @publisher, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+</h2>
 
 <div>
   <p>

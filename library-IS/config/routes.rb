@@ -15,15 +15,15 @@ Rails.application.routes.draw do
 
   get 'authors/new'
   get 'authors/index'
+  post 'authors/add', to: 'authors#add'
   get 'authors/:id', to: 'authors#show'
   get 'authors/:id/books/new', to: 'books#new'
   get 'authors/:id/edit', to: 'authors#edit'
-  post 'authors/add', to: 'authors#add'
 
+  get 'publishers/new', to: 'publishers#new'
   post 'publishers/add', to: 'publishers#add'
   get 'publishers/:id', to: 'publishers#show'
   get 'publishers/:id/edit', to: 'publishers#edit'
-  get 'books/:id/edit', to: 'books#add'
 
   resources :authors
   resources :books
@@ -37,10 +37,10 @@ Rails.application.routes.draw do
   post '/search_authors', to: 'search#search_authors'
   post '/search_publishers', to: 'search#search_publishers'
 
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
 
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
+  get '/signup', to: 'users#new'
+  post '/users', to: 'users#create'
 end
