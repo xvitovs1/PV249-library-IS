@@ -7,7 +7,7 @@ one:
   img_url: MyString
 
 two:
-  ISBN: MyString
+  ISBN: MyString2
   year: 1
   publisher: two
   img_url: MyString
