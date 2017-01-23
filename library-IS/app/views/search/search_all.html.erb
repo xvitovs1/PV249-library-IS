@@ -1,1 +1,25 @@
 <h2>Search results</h2>
+
+<h3>Results in books category (<%= @books.count %>)</h3>
+
+<% (@books).each do |book| %>
+  <ul>
+    <li><%= link_to book.title, book %> by <%= book.author.name %></li>
+  </ul>
+<% end %>
+
+<h3>Results in authors category(<%= @authors.count %>)</h3>
+
+<% (@authors).each do |author| %>
+  <ul>
+    <li><%= link_to author.name, author %></li>
+  </ul>
+<% end %>
+
+<h3>Results in publishers category (<%= @publishers.count %>)</h3>
+
+<% (@publishers).each do |publisher| %>
+  <ul>
+    <li><%= link_to publisher.name, publisher %></li>
+  </ul>
+<% end %>
