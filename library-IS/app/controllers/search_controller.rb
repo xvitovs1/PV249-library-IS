@@ -11,7 +11,7 @@ class SearchController < ApplicationController
     elsif !params['author'].empty?
       @books = search_books_by_author(params['author'])
     else
-      @books = search_books_by_author(params['isbn'])
+      @books = search_books_by_isbn(params['isbn'])
     end
   end
 
@@ -30,12 +30,12 @@ class SearchController < ApplicationController
 
   private
   def search_books_by_author(author)
-    return Book.joins(:author).where(['authors.name LIKE ?', '%' + author + '%'])
+    return Book.joins(:author).where(["authors.name LIKE ?", '%' + author + '%'])
   end
 
   private
   def search_books_by_isbn(isbn)
-    return Book.where(["isbn = ?", isbn])
+    return Book.joins(:publications).where(["publications.ISBN = ?", isbn])
   end
 
   private
