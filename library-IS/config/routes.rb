@@ -43,4 +43,6 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
+
+  get '/user/profile', to: 'users#show'
 end

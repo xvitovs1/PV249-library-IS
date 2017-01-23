@@ -8,7 +8,7 @@ ready = ->
     placeholder: 'Select an author'
     language: noResults: -> "<input class='btn btn-default' id='add-author' type='button' value='Add author'>"
     escapeMarkup: (m) -> m
-    
+
   $select_publisher.select2
     placeholder: 'Select a publisher'
     language: noResults: -> "<input class='btn btn-default' id='add-publisher' type='button' value='Add publisher'>"
@@ -20,7 +20,7 @@ ready = ->
       newOption = new Option(author_name, payload.author_id, false, true);
       $select_author.append(newOption).trigger('change');
       $select_author.select2('close');
-      
+
   $(document).on 'click', '#add-publisher', () ->
     publisher_name = $select_publisher.data('select2').$dropdown.find('input').val()
     $.post '/publishers/add', {'name': publisher_name}, (payload) ->
