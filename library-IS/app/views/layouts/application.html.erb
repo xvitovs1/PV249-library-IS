@@ -45,8 +45,13 @@
           </div>
         <div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Your account</a></li>
-            <li><a href="#">Log in</a></li>
+            <% if current_user %>
+              <li><a href="#"><%= current_user.name %></a></li>
+              <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
+              <li><%= link_to 'Sign up', signup_path %></li>
+              <li><%= link_to 'Login', login_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>

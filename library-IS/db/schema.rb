@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107170244) do
+ActiveRecord::Schema.define(version: 20170123082356) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",       null: false
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20170107170244) do
     t.integer  "year"
     t.integer  "publisher_id"
     t.string   "img_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "book_id"
-    t.boolean  "borrowed", default: false
+    t.boolean  "borrowed",     default: false
     t.index ["ISBN"], name: "index_publications_on_ISBN", unique: true
     t.index ["book_id"], name: "index_publications_on_book_id"
     t.index ["publisher_id"], name: "index_publications_on_publisher_id"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20170107170244) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

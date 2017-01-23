@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
+  get 'users/create'
+
   get 'books/:id/publications/new', to: 'publications#new'
 
   get 'contact/', to: 'contact#index'
@@ -32,4 +36,11 @@ Rails.application.routes.draw do
   post '/search_books', to: 'search#search_books'
   post '/search_authors', to: 'search#search_authors'
   post '/search_publishers', to: 'search#search_publishers'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
 end
