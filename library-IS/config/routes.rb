@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'borrows/new'
+
+  get 'borrows/show'
+
+  get 'borrows/index'
+
   get 'users/new'
   get 'users/create'
 

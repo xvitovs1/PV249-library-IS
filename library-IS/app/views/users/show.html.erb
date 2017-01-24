@@ -4,7 +4,31 @@ Email: <%= @user.email %>
 <div>
   <% if @user.reader %>
     <h3>Reader's account</h3>
-    Card code: <%= @user.reader.card_code %>
+    <p>
+      Card code: <%= @user.reader.card_code %>
+    </p>
+    <p>
+      <%= link_to 'Borrow a book', {controller: "borrows", action: "new"}, class: 'btn btn-default' %>
+      <p>
+        <h4>Active borrows</h4>
+        <% if (@user.reader.borrows.select{ |b| b.active?}).empty? %>
+          No active borrows.
+        <% else %>
+          <table id="borrows_table" class="table">
+            <tr>
+              <th>Book</th>
+            </tr>
+            <% (@user.reader.borrows.select{ |b| b.active? }).each do |borrow| %>
+            <tr>
+              <td>
+              <%= link_to borrow.publication.book.title, borrow.publication.book %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+       <% end %>
+        </p>
+    </p>
   <% else %>
     <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %>
   <% end %>
