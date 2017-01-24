@@ -16,6 +16,11 @@ class BorrowsController < ApplicationController
     end
   end
 
+  def return
+    @borrow = Borrow.update(params[:id], return_date: Date.today)
+    redirect_to :back
+  end
+
   def show
   end
 
