@@ -23,6 +23,10 @@ class SearchController < ApplicationController
     @publishers = search_publishers_by_name(params['name'])
   end
 
+  def search_users
+    @users = User.where(["email like ?", '%' + params['email'].downcase + '%'])
+  end
+
   private
   def search_books_by_title(title)
     return Book.where(["title like ?", '%' + title + '%'])

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  get 'users/:id/readers/new', to: 'readers#new'
+  get 'readers/:id', to: 'readers#show'
 
+  get 'users/new'
   get 'users/create'
 
   get 'books/:id/publications/new', to: 'publications#new'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
   resources :books
   resources :publications
   resources :publishers
+  resources :users
+  resources :readers
   get 'main_page/index'
   root 'main_page#index'
 
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
   post '/search_books', to: 'search#search_books'
   post '/search_authors', to: 'search#search_authors'
   post '/search_publishers', to: 'search#search_publishers'
+  post '/search_users', to: 'search#search_users'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -43,6 +48,9 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
+  get '/users/index'
+  get '/user/profile', to: 'users#profile'
+  get '/users/:id', to: 'users#show'
 
-  get '/user/profile', to: 'users#show'
+  get '/borrows/index'
 end

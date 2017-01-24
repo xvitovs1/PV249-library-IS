@@ -1,4 +1,6 @@
-<h2><%= current_user.name %></h2>
+<h2><%= @user.name %></h2>
 
-Email: <%= current_user.email %>
-
+Email: <%= @user.email %>
+<div>
+  <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %>
+</div>
