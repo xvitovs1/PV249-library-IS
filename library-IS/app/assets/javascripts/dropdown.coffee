@@ -3,6 +3,7 @@ ready = ->
 
   $select_author = $('.select-author')
   $select_publisher = $('.select-publisher')
+  $select_book = $('.select-isbn')
 
   $select_author.select2
     placeholder: 'Select an author'
@@ -13,6 +14,9 @@ ready = ->
     placeholder: 'Select a publisher'
     language: noResults: -> "<input class='btn btn-default' id='add-publisher' type='button' value='Add publisher'>"
     escapeMarkup: (m) -> m
+
+  $select_book.select2
+    placeholder: 'Select a book'
 
   $(document).on 'click', '#add-author', () ->
     author_name = $select_author.data('select2').$dropdown.find('input').val()

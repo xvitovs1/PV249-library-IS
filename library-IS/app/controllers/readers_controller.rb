@@ -15,5 +15,7 @@ class ReadersController < ApplicationController
   end
 
   def show
+    user = User.find_by reader_id: params[:id]
+    redirect_to controller: 'users', action: 'show', id: user.id
   end
 end

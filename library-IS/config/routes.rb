@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'borrows/new'
-
-  get 'borrows/show'
-
-  get 'borrows/index'
-
   get 'users/new'
   get 'users/create'
 
@@ -48,8 +42,9 @@ Rails.application.routes.draw do
   get '/users/:id/readers/new', to: 'readers#new'
   get '/readers/:id', to: 'readers#show'
 
-
-  get '/borrows/index'
+  get 'borrows/index'
+  get 'users/:id/borrows/new', to: 'borrows#new'
+  get 'borrows/show'
 
   resources :authors
   resources :books
@@ -57,6 +52,7 @@ Rails.application.routes.draw do
   resources :publishers
   resources :users
   resources :readers
+  resources :borrows
   get 'main_page/index'
   root 'main_page#index'
 end
