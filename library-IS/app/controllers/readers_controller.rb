@@ -5,11 +5,10 @@ class ReadersController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
     @reader = Reader.new(card_code: params[:reader][:card_code])
     if @reader.save
-      @user.reader = @reader
-			redirect_to controller: 'users', action: 'show', id: @user.id
+      User.update(params[:user_id], reader_id: @reader.id)
+			redirect_to controller: 'users', action: 'show', id: params[:user_id]
     else
       render 'new'
     end

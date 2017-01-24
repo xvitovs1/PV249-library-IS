@@ -2,5 +2,10 @@
 
 Email: <%= @user.email %>
 <div>
-  <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %>
+  <% if @user.reader %>
+    <h3>Reader's account</h3>
+    Card code: <%= @user.reader.card_code %>
+  <% else %>
+    <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %>
+  <% end %>
 </div>
