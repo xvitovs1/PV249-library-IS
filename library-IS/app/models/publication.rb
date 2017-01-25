@@ -4,7 +4,7 @@ class Publication < ApplicationRecord
   validates :ISBN, presence: { message: "can't be blank" }
 
   def available?
-    borrows = Borrow.where(["publication_id = ? and return_date = ?", self.id, nil])
+    borrows = Borrow.where(["publication_id = ? and return_date IS NULL", self.id])
     return borrows.empty?
   end
 end

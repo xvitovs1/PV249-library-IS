@@ -22,7 +22,7 @@
   <div class="form-group">
     <%= f.label :isbn %>
     <%= f.select :publication_id,
-      Publication.all.collect{|b| [b.ISBN + ' (' + b.book.title + ')', b.id]}, {include_blank: true}, {:class => 'form-control select-isbn' } %>
+      (Publication.all.select{ |p| p.available? }).collect{|b| [b.ISBN + ' (' + b.book.title + ')', b.id]}, {include_blank: true}, {:class => 'form-control select-isbn' } %>
   </div>
 
   <div class="form-group">

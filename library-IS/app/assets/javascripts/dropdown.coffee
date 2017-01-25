@@ -17,6 +17,7 @@ ready = ->
 
   $select_book.select2
     placeholder: 'Select a book'
+    language: noResults: -> "Book with this ISBN is not available."
 
   $(document).on 'click', '#add-author', () ->
     author_name = $select_author.data('select2').$dropdown.find('input').val()
