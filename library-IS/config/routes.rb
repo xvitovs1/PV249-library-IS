@@ -44,8 +44,9 @@ Rails.application.routes.draw do
 
   get 'borrows/index'
   get 'users/:id/borrows/new', to: 'borrows#new'
-  get 'borrows/show'
+  get 'borrows/:id', to: 'borrows#show'
   get 'borrows/:id/return', to: 'borrows#return'
+  get 'borrows/:id/prolong', to: 'borrows#prolong'
 
   resources :authors
   resources :books
