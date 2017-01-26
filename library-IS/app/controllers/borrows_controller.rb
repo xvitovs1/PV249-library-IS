@@ -19,6 +19,12 @@ class BorrowsController < ApplicationController
     end
   end
 
+  def notify
+    @borrow = Borrow.find(params[:id])
+    ExpiredBorrowNotifier.send_expired_borrow_email(@borrow)
+    redirect_to :back
+  end
+
   def return
     @borrow = Borrow.update(params[:id], return_date: Date.today)
     redirect_to :back

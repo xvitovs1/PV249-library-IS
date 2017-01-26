@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get '/readers/:id', to: 'readers#show'
 
   get 'borrows/index'
+  get 'borrows/:id/notify', to: 'borrows#notify'
   get 'users/:id/borrows/new', to: 'borrows#new'
   get 'borrows/:id', to: 'borrows#show'
   get 'borrows/:id/return', to: 'borrows#return'
