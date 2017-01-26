@@ -1,9 +1,11 @@
 <h2>Authors catalogue</h2>
 
 <div>
-  <p>
-  <h3><%= link_to "Add new author", new_author_path %></h3>
-  </p>
+  <% if current_user && current_user.librarian %>
+    <p>
+      <h3><%= link_to "Add new author", new_author_path %></h3>
+    </p>
+  <% end %>
   <p>
     <h3>Find an author</h3>
     <%= form_tag({controller: "search", action: "search_authors"}, method: "post", class:"form", role: "search") do %>

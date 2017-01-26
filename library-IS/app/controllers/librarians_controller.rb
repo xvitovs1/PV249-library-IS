@@ -1,4 +1,7 @@
 class LibrariansController < ApplicationController
+
+  before_action :authorize_librarians
+
 	def new
     @librarian = Librarian.new
     @user = User.find(params[:id])
