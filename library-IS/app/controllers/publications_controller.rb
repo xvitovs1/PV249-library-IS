@@ -1,4 +1,7 @@
 class PublicationsController < ApplicationController
+
+  before_action :authorize_librarians
+
   def new
     @publication = Publication.new
     @book = Book.find(params[:id])

@@ -1,4 +1,7 @@
 class PublishersController < ApplicationController
+
+  before_action :authorize_librarians, only: [:add, :new, :create, :edit, :update, :destroy]
+
 	def index
   end
 

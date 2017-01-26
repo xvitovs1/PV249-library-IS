@@ -36,4 +36,12 @@ Email: <%= @user.email %>
   <% else %>
     <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %>
   <% end %>
+  <% if @user.librarian %>
+    <h3>Librarian's account</h3>
+    <p>
+      Card code: <%= @user.librarian.card_code %>
+    </p>
+  <% else %>
+    <%= link_to "Add librarian's account", controller: 'librarians', action: 'new', id: @user %>
+  <% end %>
 </div>

@@ -1,4 +1,7 @@
 class SearchController < ApplicationController
+
+  before_action :authorize_librarians, only: [:search_users]
+
   def search_all
     @books = search_books_by_title(params['query'])
     @authors = search_authors_by_name(params['query'])

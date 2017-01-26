@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  get '/librarians/denied', to: 'librarians#denied'
 
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   get '/user/profile', to: 'users#profile'
   get '/users/:id', to: 'users#show'
   get '/users/:id/readers/new', to: 'readers#new'
+  get '/users/:id/librarians/new', to: 'librarians#new'
   get '/readers/:id', to: 'readers#show'
 
   get 'borrows/index'
@@ -55,6 +57,7 @@ Rails.application.routes.draw do
   resources :users
   resources :readers
   resources :borrows
+  resources :librarians
   get 'main_page/index'
   root 'main_page#index'
 end

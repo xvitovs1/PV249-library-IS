@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+
+  before_action :authorize_librarians, only: [:new, :create, :edit, :update, :destroy]
+
   def index
   end
 

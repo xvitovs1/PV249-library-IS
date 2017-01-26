@@ -1,4 +1,7 @@
 class AuthorsController < ApplicationController
+
+  before_action :authorize_librarians, only: [:new, :add, :create, :edit, :update, :destroy]
+
   def index
     @authors = Author.order(:name)
   end

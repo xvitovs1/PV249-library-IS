@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  before_action :authorize_librarians, only: [:index, :show]
+  before_action :authorize, only: [:profile]
+
   def index
   end
 
