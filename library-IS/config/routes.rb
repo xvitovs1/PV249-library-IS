@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post '/search_publishers', to: 'search#search_publishers'
   post '/search_users', to: 'search#search_users'
   post '/search_borrows', to: 'search#search_borrows'
+  post '/search_by_isbn', to: 'search#search_books_by_isbn'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

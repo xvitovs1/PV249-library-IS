@@ -9,12 +9,12 @@ class SearchController < ApplicationController
   end
 
   def search_books
-    if !params['title'].empty?
+    if !params['title'].empty? && !params['author'].empty?
+      @books = Book.joins(:author).where(["books.title like ? and authors.name like ?", '%' + params['title'] + '%','%'+ params['author']+'%'])
+    elsif !params['title'].empty?
       @books = search_books_by_title(params['title'])
     elsif !params['author'].empty?
       @books = search_books_by_author(params['author'])
-    else
-      @books = search_books_by_isbn(params['isbn'])
     end
   end
 
@@ -34,6 +34,10 @@ class SearchController < ApplicationController
     @borrows = Borrow.joins("LEFT JOIN users ON borrows.reader_id = users.reader_id").where(["users.email LIKE ? ", params['email']])
   end
 
+  def search_books_by_isbn
+    @books = Book.joins(:publications).where(["publications.ISBN = ?", params['isbn']])
+  end
+
   private
   def search_books_by_title(title)
     return Book.where(["title like ?", '%' + title + '%'])
@@ -44,12 +48,7 @@ class SearchController < ApplicationController
     return Book.joins(:author).where(["authors.name LIKE ?", '%' + author + '%'])
   end
 
-  private
-  def search_books_by_isbn(isbn)
-    return Book.joins(:publications).where(["publications.ISBN = ?", isbn])
-  end
-
-  private
+    private
   def search_authors_by_name(name)
     return Author.where(["name like ?", '%' + name + '%'])
   end
