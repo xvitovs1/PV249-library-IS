@@ -30,6 +30,10 @@ class SearchController < ApplicationController
     @users = User.where(["email like ?", '%' + params['email'].downcase + '%'])
   end
 
+  def search_borrows
+    @borrows = Borrow.joins("LEFT JOIN users ON borrows.reader_id = users.reader_id").where(["users.email LIKE ? ", params['email']])
+  end
+
   private
   def search_books_by_title(title)
     return Book.where(["title like ?", '%' + title + '%'])

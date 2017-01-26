@@ -1,2 +1,45 @@
-<h1>Borrows#index</h1>
-<p>Find me in app/views/borrows/index.html.erb</p>
+<h2>Borrows</h2>
+<h3>Search</h3>
+<div>
+  <p>
+    <%= form_tag({controller: "search", action: "search_borrows"}, method: "post", class:"form", role: "search") do %>
+			<div class="form-group">
+    		<label for="name">Email</label>
+    		<input type="email" class="form-control" name="email" placeholder="Email">
+  		</div>
+			<button type="submit" class="btn btn-default">Search</button>
+    <% end %>
+  </p>
+</div>
+
+<h3>Expired borrows</h3>
+
+<div>
+  <p>
+  <table id="borrows_table" class="table">
+    <tr>
+      <th>ISBN</th>
+      <th>Reader</th>
+			<th>Expected return date</th>
+			<th></th>
+    </tr>
+    <% (@expired_borrows.all.sort{ |a,b| a.expected_return_date <=> b.expected_return_date }).each do |borrow| %>
+    <tr>
+			<td>
+				<%= borrow.publication.ISBN %>
+			</td>
+			<td>
+				<%= borrow.get_user.email %>
+			</td>
+			<td>
+				<%= borrow.expected_return_date %>
+			</td>
+      <td>
+      <%= link_to 'Show', borrow, class:'btn btn-default' %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
+</div>

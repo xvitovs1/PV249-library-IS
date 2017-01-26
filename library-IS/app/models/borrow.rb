@@ -8,4 +8,8 @@ class Borrow < ApplicationRecord
   def active?
     return return_date.nil?
   end
+
+  def get_user
+    User.find_by reader_id: self.reader_id
+  end
 end

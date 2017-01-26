@@ -29,6 +29,7 @@ class BorrowsController < ApplicationController
   end
 
   def index
+    @expired_borrows = Borrow.where(['return_date is null and expected_return_date > ?', Date.today])
   end
 
   def prolong

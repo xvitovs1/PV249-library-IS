@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post '/search_authors', to: 'search#search_authors'
   post '/search_publishers', to: 'search#search_publishers'
   post '/search_users', to: 'search#search_users'
+  post '/search_borrows', to: 'search#search_borrows'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
