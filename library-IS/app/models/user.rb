@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :email, presence: {message: "can't be blank"}, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false, message: ": User with this email already exists" }
-  belongs_to :reader
-  belongs_to :librarian
+  belongs_to :reader, optional: true
+  belongs_to :librarian, optional: true
   has_secure_password
 end
