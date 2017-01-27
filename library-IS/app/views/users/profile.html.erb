@@ -1,6 +1,8 @@
-<h2><%= current_user.name %></h2>
-
-Email: <%= current_user.email %>
+<div class="page-header">
+  <h2><%= current_user.name %>
+    <small><%= current_user.email %></small>
+  </h2>
+</div>
 
 <div>
   <% if current_user.reader %>

@@ -1,4 +1,6 @@
-<h2><%= @borrow.publication.book.title %></h2> by <%= @borrow.publication.book.author.name %>
+<div class="page-header">
+  <h2><%= @borrow.publication.book.title %> <small>by <%= @borrow.publication.book.author.name %> </small> </h2>
+</div>
 
 <div>
   <p>ISBN: <%= @borrow.publication.ISBN %></p>
