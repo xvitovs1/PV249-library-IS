@@ -6,7 +6,7 @@
   <p>Expected return date: <%= @borrow.expected_return_date %></p>
 </div>
 
-<% if @borrow.active? %>
+<% if @borrow.active? && current_user.librarian %>
   <%= link_to 'End this borrow', {controller: 'borrows', action: 'return', id: @borrow.id}, class: 'btn btn-danger'%>
   <%= link_to 'Prolong this borrow', {controller: 'borrows', action: 'prolong', id: @borrow.id}, class: 'btn btn-default'%>
 <% else %>

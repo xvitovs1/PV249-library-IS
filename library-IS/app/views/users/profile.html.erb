@@ -2,3 +2,38 @@
 
 Email: <%= current_user.email %>
 
+<div>
+  <% if current_user.reader %>
+    <h3>Reader's account</h3>
+    <p>
+      Card code: <%= current_user.reader.card_code %>
+    </p>
+    <p>
+        <h4>Active borrows</h4>
+        <% if (current_user.reader.borrows.select{ |b| b.active?}).empty? %>
+          No active borrows.
+        <% else %>
+          <table id="borrows_table" class="table">
+            <tr>
+              <th>Book</th>
+            </tr>
+            <% (current_user.reader.borrows.select{ |b| b.active? }).each do |borrow| %>
+            <tr>
+              <td>
+              <%= link_to borrow.publication.book.title, borrow %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+       <% end %>
+    </p>
+  <% elsif current_user.librarian %>
+    <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: current_user %>
+  <% end %>
+  <% if current_user.librarian %>
+    <h3>Librarian's account</h3>
+    <p>
+      Card code: <%= current_user.librarian.card_code %>
+    </p>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 class BorrowsController < ApplicationController
 
-  before_action :authorize_librarians
+  before_action :authorize_librarians, only: [:new, :create, :notify, :return, :index, :prolong, :update]
 
   def new
     @borrow = Borrow.new
