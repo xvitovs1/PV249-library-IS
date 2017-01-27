@@ -17,12 +17,20 @@ Email: <%= @user.email %>
           <table id="borrows_table" class="table">
             <tr>
               <th>Book</th>
+              <th>Borrowed on</th>
+              <th>Expected return date</th>
               <th></th>
             </tr>
             <% (@user.reader.borrows.select{ |b| b.active? }).each do |borrow| %>
             <tr>
               <td>
               <%= link_to borrow.publication.book.title, borrow %>
+              </td>
+              <td>
+                <%= borrow.borrow_date %>
+              </td>
+              <td>
+                <%= borrow.expected_return_date %>
               </td>
               <td>
                 <%= link_to 'Return', {controller: 'borrows', action: 'return', id: borrow.id}, class: 'btn btn-danger'%>
