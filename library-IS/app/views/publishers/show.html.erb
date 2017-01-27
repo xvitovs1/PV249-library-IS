@@ -1,5 +1,8 @@
-<h2><%= @publisher.name %> <%= link_to 'Edit', edit_publisher_path(@publisher), class: 'btn btn-default' %>
-<%= link_to 'Remove', @publisher, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+<h2><%= @publisher.name %>
+<% if current_user && current_user.librarian %>
+  <%= link_to 'Edit', edit_publisher_path(@publisher), class: 'btn btn-default' %>
+  <%= link_to 'Remove', @publisher, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+<% end %>
 </h2>
 
 <div>
@@ -26,10 +29,12 @@
       <td>
         <%= publication.year %>
       </td>
-      <td>
-        <%= link_to 'Edit', edit_publication_path(publication, publication.book.id), class: 'btn btn-default'  %>
-        <%= link_to 'Remove', publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
-      </td>
+      <% if current_user && current_user.librarian %>
+        <td>
+          <%= link_to 'Edit', edit_publication_path(publication, publication.book.id), class: 'btn btn-default'  %>
+          <%= link_to 'Remove', publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+        </td>
+      <% end %>
     </tr>
     <% end %>
   </table>

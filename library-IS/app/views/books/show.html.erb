@@ -1,6 +1,8 @@
 <h2>
-  <%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
-  <%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <% if current_user && current_user.librarian %>
+    <%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
+    <%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <% end %>
 </h2>
 
 
@@ -21,7 +23,9 @@
 
 <h3>List of copies</h3>
 <div>
-  <%= link_to "Add copy", {controller:'publications', action:'new'}, class: 'btn btn-default' %>
+  <% if current_user && current_user.librarian %>
+    <%= link_to "Add copy", {controller:'publications', action:'new'}, class: 'btn btn-default' %>
+  <% end %>
   <p>
     <table id="publications_table" class="table table-bordered">
       <tr>
@@ -29,7 +33,9 @@
         <th>Publisher</th>
         <th>Year</th>
         <th>Available</th>
-        <th></th>
+        <% if current_user && current_user.librarian %>
+          <th></th>
+        <% end %>
       </tr>
       <% (@book.publications).each do |publication| %>
       <tr>
@@ -49,10 +55,12 @@
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           <% end %>
         </td>
-        <td>
-          <%= link_to 'Edit', edit_publication_path(publication, @book.id), class: 'btn btn-default'  %>
-          <%= link_to 'Remove', publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
-        </td>
+        <% if current_user && current_user.librarian %>
+          <td>
+            <%= link_to 'Edit', edit_publication_path(publication, @book.id), class: 'btn btn-default'  %>
+            <%= link_to 'Remove', publication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+          </td>
+        <% end %>
       </tr>
       <% end %>
     </table>

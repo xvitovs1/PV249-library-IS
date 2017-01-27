@@ -31,6 +31,7 @@
                 <li><%= link_to "Publishers", publishers_path %></li>
               </ul>
             </li>
+            <% if current_user && current_user.librarian %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -38,7 +39,7 @@
                 <li><%= link_to "Borrows", borrows_index_path %><li>
               </ul>
             </li>
-
+            <% end %>
             <li><%= link_to "Contact", contact_path %></li>
           </ul>
           <div class="col-sm-3 col-md-3">
