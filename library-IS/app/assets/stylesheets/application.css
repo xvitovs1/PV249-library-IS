@@ -35,9 +35,19 @@ body {
   border-color: #76323f;
 }
 
+.btn-danger:hover {
+  background-color: #834652;
+  border-color: #834652;
+}
+
 .btn-default {
   background-color: #D7CEC7;
   border-color: #D7CEC7;
+}
+
+.btn-default:hover {
+  background-color: #e7e1dd;
+  border-color: #e7e1dd;
 }
 
 .footer {
