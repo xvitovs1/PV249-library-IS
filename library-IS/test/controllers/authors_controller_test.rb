@@ -22,6 +22,11 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index" do
+    get "/authors/"
+    assert_response :success
+  end
+
   test "should not delete when not authorized" do
     delete "/authors/:id", params: {id: @author.id}
     assert_redirected_to '/librarians/denied'

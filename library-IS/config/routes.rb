@@ -2,15 +2,13 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/create'
 
-  get 'books/:id/publications/new', to: 'publications#new'
-
   get 'contact/', to: 'contact#index'
 
-  get 'books/show'
   get 'books/index'
   get 'books/new'
   get '/books/:id', to: 'books#show'
   get '/books/:id/edit', to: 'books#edit'
+  get 'books/:id/publications/new', to: 'publications#new'
 
   get 'authors/new'
   get 'authors/index'

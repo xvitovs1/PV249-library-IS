@@ -1,19 +1,33 @@
 require 'test_helper'
 
 class BooksControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get books_index_url
-    assert_response :success
+  def setup
+    @book = books(:one)
+    @book.save
   end
 
-  test "should get new" do
+  test "should not get new when not authorized" do
     get books_new_url
-    assert_response :success
+    assert_redirected_to '/librarians/denied'
+  end
+
+  test "should not get edit when not authorized" do
+    get '/books/:id/edit', params: {id: @book.id}
+    assert_redirected_to '/librarians/denied'
   end
 
   test "should get show" do
-    get books_show_url
+    get "/books/" + @book.id.to_s
     assert_response :success
   end
 
+  test "should get index" do
+    get "/books/"
+    assert_response :success
+  end
+
+  test "should not delete when not authorized" do
+    delete "/books/:id", params: {id: @book.id}
+    assert_redirected_to '/librarians/denied'
+  end
 end
