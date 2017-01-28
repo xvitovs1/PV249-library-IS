@@ -1,5 +1,16 @@
 <div class="jumbotron">
-  <h2>Library information system</h2>
-  <p>...</p>
+  <h2>Library Information System</h2>
+  <p>Welcome to our Information System!</p>
+  <% if !current_user %>
+    <p>For authorized access please log in or sign up:</p>
+    <p>
+      <%= link_to 'Log in', login_path, class: "btn btn-default" %>
+      <%= link_to 'Sign up', signup_path, class: "btn btn-default" %>
+    </p>
+  <% end %>
+</div>
+
+<div>
+  TODO
 </div>
 
