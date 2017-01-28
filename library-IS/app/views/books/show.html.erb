@@ -1,25 +1,16 @@
-<h2>
+<div class = "page-header">
+  <h2>
+    <%= @book.title %> <small> by <%= link_to @book.author.name, @book.author %> </small>
+  </h2>
   <% if current_user && current_user.librarian %>
-    <%= @book.title %> <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
+    <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-default' %>
     <%= link_to 'Remove', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
   <% end %>
-</h2>
+</div>
 
-
-<table id="book_info_table" class="table book-info-table">
-  <tr>
-    <td>
-      Author
-    </td>
-    <td><%= link_to @book.author.name, @book.author %></td>
-  </tr>
-  <tr>
-    <td>
-      Description
-    </td>
-    <td><%= @book.description %></td>
-  </tr>
-</table>
+<div>
+  <%= @book.description %>
+</div>
 
 <h3>List of copies</h3>
 <div>
