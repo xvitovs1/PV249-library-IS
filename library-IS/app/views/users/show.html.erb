@@ -3,6 +3,19 @@
     <%= @user.name %>
     <small><%= @user.email %></small>
   </h2>
+
+</div>
+
+<div>
+  <h3>Personal info</h3>
+  <h5>Birth date:</h5>
+  <%= @user.birthday %>
+  <h5>Address:</h5>
+  <p>
+  <%= @user.street %> </br>
+  <%= @user.city %> </br>
+  <%= @user.postcode %>
+  </p>
 </div>
 
 <div>
@@ -46,7 +59,7 @@
         </p>
     </p>
   <% else %>
-    <%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %>
+    <p><%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %></p>
   <% end %>
   <% if @user.librarian %>
     <h3>Librarian's account</h3>

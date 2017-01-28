@@ -36,9 +36,9 @@ Rails.application.routes.draw do
   get '/librarians/denied', to: 'librarians#denied'
 
   get '/signup', to: 'users#new'
-  post '/users', to: 'users#create'
-  get 'users/index', to: 'users#index'
+  get '/users/index', to: 'users#index'
   get '/user/profile', to: 'users#profile'
+  get '/users/:id/edit', to: 'users#edit'
   get '/users/:id', to: 'users#show'
   get '/users/:id/readers/new', to: 'readers#new'
   get '/users/:id/librarians/new', to: 'librarians#new'
