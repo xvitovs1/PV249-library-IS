@@ -1,4 +1,5 @@
 ready = ->
+  $("#birthdayPicker").birthdayPicker();
   $('.dropdown-toggle').dropdown()
 
   $select_author = $('.select-author')

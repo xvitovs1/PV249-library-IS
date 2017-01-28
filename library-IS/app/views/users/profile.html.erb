@@ -5,6 +5,18 @@
 </div>
 
 <div>
+  <h3>Personal info</h3>
+  <h5>Birth date:</h5>
+  <%= current_user.birthday %>
+  <h5>Address:</h5>
+  <p>
+  <%= current_user.street %> </br>
+  <%= current_user.city %> </br>
+  <%= current_user.postcode %>
+  </p>
+</div>
+
+<div>
   <% if current_user.reader %>
     <h3>Reader's account</h3>
     <p>
