@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    /*background-color: #f5f6f7;*/
+    background: #FFF url("/assets/agsquare.png")
+}
+
+.body-content {
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.btn-danger {
+  background-color: #76323f;
+  border-color: #76323f;
+}
