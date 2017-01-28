@@ -35,6 +35,11 @@ body {
   border-color: #76323f;
 }
 
+.btn-default {
+  background-color: #D7CEC7;
+  border-color: #D7CEC7;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
