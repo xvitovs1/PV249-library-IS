@@ -2,9 +2,15 @@ require 'test_helper'
 
 class BorrowTest < ActiveSupport::TestCase
   def setup
-    publication = publications(:one)
-    publication.save
-    @borrow = Borrow.new(borrow_date: Date.today, expected_return_date: Date.tomorrow, publication: publications(:one), reader: readers(:one))
+    @publication = publications(:one)
+    @publication.save
+    @borrow = Borrow.new(borrow_date: Date.today, expected_return_date: Date.tomorrow, publication: @publication, reader: readers(:one))
+  end
+
+  test "cannot borrow publication that is already borrowed" do
+    @borrow.save
+    borrow2 = Borrow.new(borrow_date: Date.today, expected_return_date: Date.tomorrow, publication: @publication, reader: readers(:two))
+    assert_not @borrow.valid?
   end
 
   test "should be valid" do
