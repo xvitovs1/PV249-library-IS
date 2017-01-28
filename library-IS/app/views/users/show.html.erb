@@ -3,7 +3,7 @@
     <%= @user.name %>
     <small><%= @user.email %></small>
   </h2>
-
+  <%= link_to 'Remove', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
 </div>
 
 <div>

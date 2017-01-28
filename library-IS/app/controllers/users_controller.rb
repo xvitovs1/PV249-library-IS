@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.destroy(params[:id])
-    redirect_to :back
+    redirect_to action: "index"
   end
 
   def edit
