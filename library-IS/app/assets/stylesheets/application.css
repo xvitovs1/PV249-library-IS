@@ -35,7 +35,7 @@ body {
   border-color: #76323f;
 }
 
-.btn-danger:hover {
+.btn-danger:active, .btn-danger:hover, .btn-danger:visited {
   background-color: #834652;
   border-color: #834652;
 }
@@ -45,7 +45,7 @@ body {
   border-color: #D7CEC7;
 }
 
-.btn-default:hover {
+.btn-default:active, .btn-default:hover, .btn-default:visited {
   background-color: #e7e1dd;
   border-color: #e7e1dd;
 }
