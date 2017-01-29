@@ -34,7 +34,7 @@
           <%= publication.ISBN %>
         </td>
         <td>
-          <%= publication.publisher.name %>
+          <%= link_to publication.publisher.name, publication.publisher %>
         </td>
         <td>
           <%= publication.year %>
