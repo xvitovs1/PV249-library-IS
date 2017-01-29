@@ -25,11 +25,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    begin
-      @book = Book.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to action: "index"
-    end
+    @book = Book.find(params[:id])
   end
 
   def edit

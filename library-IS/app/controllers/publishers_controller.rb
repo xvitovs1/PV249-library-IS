@@ -2,7 +2,7 @@ class PublishersController < ApplicationController
 
   before_action :authorize_librarians, only: [:add, :new, :create, :edit, :update, :destroy]
 
-	def index
+  def index
   end
 
   def show
@@ -12,7 +12,7 @@ class PublishersController < ApplicationController
   def add
     @publisher = Publisher.new(name: params[:name])
     @publisher.save
-		render :json => { :status => :ok, :message => "Success!", :publisher_id => @publisher.id }
+    render :json => { :status => :ok, :message => "Success!", :publisher_id => @publisher.id }
   end
 
 	def new

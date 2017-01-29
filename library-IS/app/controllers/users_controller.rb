@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # Shows profile of current user.
   def profile
   end
 
@@ -48,7 +49,8 @@ class UsersController < ApplicationController
     end
   end
 
-	private
+  # Get parameters from the user form.
+  private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :city, :street, :postcode)
   end

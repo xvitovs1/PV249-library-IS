@@ -10,6 +10,7 @@ class AuthorsController < ApplicationController
     @author = Author.new
   end
 
+  # For adding users via dropdown.
   def add
     @author = Author.new(name: params[:name])
     @author.save
@@ -19,7 +20,7 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(name: params[:author][:name])
     if @author.save
-			redirect_to action: 'show', id: @author.id
+      redirect_to action: 'show', id: @author.id
     else
       render 'new'
     end

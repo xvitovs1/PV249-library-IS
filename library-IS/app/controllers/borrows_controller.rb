@@ -19,12 +19,14 @@ class BorrowsController < ApplicationController
     end
   end
 
+  # Used to send a notification because of expired borrow.
   def notify
     @borrow = Borrow.find(params[:id])
     ExpiredBorrowNotifier.send_expired_borrow_email(@borrow)
     redirect_to :back
   end
 
+  # Used to end a borrow, book was returned.
   def return
     @borrow = Borrow.update(params[:id], return_date: Date.today)
     redirect_to :back
@@ -38,6 +40,7 @@ class BorrowsController < ApplicationController
     @expired_borrows = Borrow.where(['return_date is null and expected_return_date > ?', Date.today])
   end
 
+  # Used to prolong a borrow.
   def prolong
     @borrow = Borrow.find(params[:id])
     @user = User.find_by reader_id: @borrow.reader.id
@@ -51,6 +54,7 @@ class BorrowsController < ApplicationController
 
   private
 
+  # Gets number of months to borrow a book.
   def get_num_months(param)
     if param == '3m'
       3
