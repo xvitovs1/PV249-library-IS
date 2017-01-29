@@ -33,6 +33,7 @@ ready = ->
     language: noResults: -> "Book with this ISBN is not available."
 
   $(document).on 'click', '#add-author', () ->
+    $select_author = $('.select-author')
     author_name = $select_author.data('select2').$dropdown.find('input').val()
     $.post '/authors/add', {'name': author_name}, (payload) ->
       newOption = new Option(author_name, payload.author_id, false, true);
@@ -40,6 +41,7 @@ ready = ->
       $select_author.select2('close');
 
   $(document).on 'click', '#add-publisher', () ->
+    $select_publisher = $('.select-publisher')
     publisher_name = $select_publisher.data('select2').$dropdown.find('input').val()
     $.post '/publishers/add', {'name': publisher_name}, (payload) ->
       newOption = new Option(publisher_name, payload.publisher_id, false, true);
