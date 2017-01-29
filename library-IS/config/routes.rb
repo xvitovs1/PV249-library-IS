@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/users/:id/readers/new', to: 'readers#new'
   get '/users/:id/librarians/new', to: 'librarians#new'
   get '/readers/:id', to: 'readers#show'
+  get '/readers/:id/edit', to: 'readers#edit'
 
   get 'borrows/index'
   get 'borrows/:id/notify', to: 'borrows#notify'

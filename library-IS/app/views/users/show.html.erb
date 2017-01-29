@@ -21,6 +21,8 @@
 <div>
   <% if @user.reader %>
     <h3>Reader's account</h3>
+    <%= link_to 'Edit', edit_reader_path(id: @user.reader), class: 'btn btn-default' %>
+    <%= link_to 'Remove', @user.reader, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
     <p>
       Card code: <%= @user.reader.card_code %>
     </p>
