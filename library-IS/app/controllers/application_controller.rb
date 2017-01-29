@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
+  def authorize_admin
+    redirect_to '/librarians/denied' unless current_user && current_user.admin?
+  end
+
   def authorize_librarians
     redirect_to '/librarians/denied' unless current_user && current_user.librarian
   end

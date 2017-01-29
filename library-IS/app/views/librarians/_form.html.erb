@@ -1,0 +1,22 @@
+<%= form_for(@librarian) do |f| %>
+  <% if @librarian.errors.any? %>
+    <div class="alert alert-danger">
+      <% @librarian.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :user %>
+    <%= @user.email %>
+    <%= hidden_field_tag 'user_id', @user.id %>
+  </div>
+  <div class="form-group">
+    <%= f.label :card_code %>
+    <%= f.text_field :card_code, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Save', class: 'btn btn-default' %>
+    <%= link_to 'Back', :back, class: 'btn btn-default'%>
+  </div>
+<% end %>

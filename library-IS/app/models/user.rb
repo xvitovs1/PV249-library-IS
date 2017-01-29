@@ -12,4 +12,8 @@ class User < ApplicationRecord
   belongs_to :reader, optional: true, :dependent => :destroy
   belongs_to :librarian, optional: true, :dependent => :destroy
   has_secure_password
+
+  def admin?
+    self.librarian.admin
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128144158) do
+ActiveRecord::Schema.define(version: 20170129085408) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",       null: false
@@ -41,8 +41,9 @@ ActiveRecord::Schema.define(version: 20170128144158) do
 
   create_table "librarians", force: :cascade do |t|
     t.string   "card_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "admin",      default: false
   end
 
   create_table "publications", force: :cascade do |t|

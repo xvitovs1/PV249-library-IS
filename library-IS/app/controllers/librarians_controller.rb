@@ -1,8 +1,9 @@
 class LibrariansController < ApplicationController
 
-  before_action :authorize_librarians, only: [:new, :create, :show]
+  before_action :authorize_librarians, only: [:show]
+  before_action :authorize_admin, only: [:destroy, :create, :new, :update]
 
-	def new
+  def new
     @librarian = Librarian.new
     @user = User.find(params[:id])
   end
@@ -19,6 +20,27 @@ class LibrariansController < ApplicationController
 
   def show
     user = User.find_by librarian_id: params[:id]
+    redirect_to controller: 'users', action: 'show', id: user.id
+  end
+
+	def edit
+    @librarian = Librarian.find(params[:id])
+    @user = User.find_by librarian_id: @librarian.id
+  end
+
+  def update
+    @librarian = Librarian.update(params[:id], card_code: params[:librarian][:card_code])
+    if @librarian.valid?
+      user = User.find_by librarian_id: @librarian.id
+      redirect_to controller: 'users', action: 'show', id: user.id
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+		user = User.find_by librarian_id: params[:id]
+    Librarian.destroy(params[:id])
     redirect_to controller: 'users', action: 'show', id: user.id
   end
 
