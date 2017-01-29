@@ -1,6 +1,6 @@
 class LibrariansController < ApplicationController
 
-  before_action :authorize_librarians only: [:new, :create, :show]
+  before_action :authorize_librarians, only: [:new, :create, :show]
 
 	def new
     @librarian = Librarian.new
