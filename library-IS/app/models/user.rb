@@ -14,6 +14,6 @@ class User < ApplicationRecord
   has_secure_password
 
   def admin?
-    self.librarian.admin
+    self.librarian && self.librarian.admin
   end
 end
