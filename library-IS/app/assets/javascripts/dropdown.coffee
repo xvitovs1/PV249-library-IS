@@ -47,5 +47,5 @@ ready = ->
       newOption = new Option(publisher_name, payload.publisher_id, false, true);
       $select_publisher.append(newOption).trigger('change');
       $select_publisher.select2('close');
-
+      
 $(document).on('turbolinks:load', ready)

@@ -16,7 +16,7 @@
       <%= f.select :author,
         Author.all.collect{|a| [a.name, a.id]}, {include_blank: true, :selected => author.id},
         {:class => 'form-control select-author'} %>
-   <% else %>
+    <% else %>
       <%= f.select :author,
         Author.all.collect{|a| [a.name, a.id]}, {include_blank: true}, {:class => 'form-control select-author' } %>
     <% end %>
