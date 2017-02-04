@@ -22,7 +22,7 @@ body {
     margin-bottom: 40px;
     overflow-y: scroll;
     /*background-color: #f5f6f7;*/
-    background: #FFF url("/assets/agsquare.png")
+    background: #FFF asset-data-url("agsquare.png")
 }
 
 .body-content {
