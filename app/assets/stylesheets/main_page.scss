@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .jumbotron {
   position: relative;
-  background: #FFF url("/assets/books.jpg") center center;
+  background: #FFF asset-data-url("books.jpg") center center;
   width: 100%;
   height: 100%;
   background-size: cover;
