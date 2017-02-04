@@ -1,0 +1,39 @@
+<h2>Search results (<%= @borrows.count %>)</h2>
+
+<div>
+  <p>
+  <table id="borrows_table" class="table">
+    <tr>
+      <th>ISBN</th>
+      <th>Reader</th>
+      <th>Borrow date</th>
+			<th>(Expected) return date</th>
+			<th></th>
+    </tr>
+    <% (@borrows.all.sort{ |a,b| a.borrow_date <=> b.borrow_date }).each do |borrow| %>
+    <tr>
+			<td>
+				<%= borrow.publication.ISBN %>
+			</td>
+			<td>
+				<%= borrow.get_user.email %>
+			</td>
+			<td>
+				<%= borrow.borrow_date %>
+      </td>
+      <td>
+        <% if borrow.return_date %>
+          <%= borrow.return_date %>
+        <% else %>
+          <%= borrow.expected_return_date %>
+        <% end %>
+      </td>
+      <td>
+      <%= link_to 'Show', borrow, class:'btn btn-default' %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
+</div>

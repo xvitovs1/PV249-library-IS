@@ -1,0 +1,35 @@
+<h2><%= @author.name %>
+<% if current_user && current_user.librarian %>
+  <%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-default' %>
+  <%= link_to 'Remove', @author, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<% end %>
+</h2>
+
+<div>
+  <% if current_user && current_user.librarian %>
+    <%= link_to 'Add book', {controller: "books", action: "new"}, class: 'btn btn-default' %>
+  <% end %>
+
+  <p>
+  <table id="books_table" class="table">
+    <tr>
+      <th>Books</th>
+      <th></th>
+    </tr>
+    <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
+    <tr>
+      <td>
+      <%= link_to book.title, book %>
+      </td>
+      <% if current_user && current_user.librarian %>
+        <td>
+         <%= link_to 'Edit', edit_book_path(book, @author.id), class: 'btn btn-default'  %>
+         <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+        </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
+</div>

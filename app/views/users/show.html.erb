@@ -1,0 +1,78 @@
+<div class="page-header">
+  <h2>
+    <%= @user.name %>
+    <small><%= @user.email %></small>
+  </h2>
+  <%= link_to 'Remove', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+</div>
+
+<div>
+  <h3>Personal info</h3>
+  <h5>Birth date:</h5>
+  <%= @user.birthday %>
+  <h5>Address:</h5>
+  <p>
+  <%= @user.street %> </br>
+  <%= @user.city %> </br>
+  <%= @user.postcode %>
+  </p>
+</div>
+
+<div>
+  <% if @user.reader %>
+    <h3>Reader's account</h3>
+    <%= link_to 'Edit', edit_reader_path(id: @user.reader), class: 'btn btn-default' %>
+    <%= link_to 'Remove', @user.reader, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <p>
+      Card code: <%= @user.reader.card_code %>
+    </p>
+    <p>
+      <%= link_to 'Borrow a book', {controller: "borrows", action: "new"}, class: 'btn btn-default' %>
+      <p>
+        <h4>Active borrows</h4>
+        <% if (@user.reader.borrows.select{ |b| b.active?}).empty? %>
+          No active borrows.
+        <% else %>
+          <table id="borrows_table" class="table">
+            <tr>
+              <th>Book</th>
+              <th>Borrowed on</th>
+              <th>Expected return date</th>
+              <th></th>
+            </tr>
+            <% (@user.reader.borrows.select{ |b| b.active? }).each do |borrow| %>
+            <tr>
+              <td>
+              <%= link_to borrow.publication.book.title, borrow %>
+              </td>
+              <td>
+                <%= borrow.borrow_date %>
+              </td>
+              <td>
+                <%= borrow.expected_return_date %>
+              </td>
+              <td>
+                <%= link_to 'Return', {controller: 'borrows', action: 'return', id: borrow.id}, class: 'btn btn-danger'%>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+       <% end %>
+        </p>
+    </p>
+  <% else %>
+    <p><%= link_to "Add reader's account", controller: 'readers', action: 'new', id: @user %></p>
+  <% end %>
+  <% if @user.librarian %>
+    <h3>Librarian's account</h3>
+    <% if @user.admin? %>
+      <%= link_to 'Edit', edit_librarian_path(id: @user.librarian), class: 'btn btn-default' %>
+      <%= link_to 'Remove', @user.librarian, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+    <% end %>
+    <p>
+      Card code: <%= @user.librarian.card_code %>
+    </p>
+  <% elsif @user.admin? %>
+    <%= link_to "Add librarian's account", controller: 'librarians', action: 'new', id: @user %>
+  <% end %>
+</div>

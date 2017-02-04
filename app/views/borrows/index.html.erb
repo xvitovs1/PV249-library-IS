@@ -1,0 +1,48 @@
+<h2>Borrows</h2>
+<h3>Search</h3>
+<div>
+  <p>
+  <%= form_tag({controller: "search", action: "search_borrows"}, method: "post", class:"form", role: "search") do %>
+    <div class="row">
+			<div class="form-group col-md-3">
+    		<label for="name">Email</label>
+    		<input type="email" class="form-control" name="email" placeholder="Email">
+      </div>
+    </div>
+		<button type="submit" class="btn btn-default">Search</button>
+  <% end %>
+  </p>
+</div>
+
+<h3>Expired borrows</h3>
+
+<div>
+  <p>
+  <table id="borrows_table" class="table">
+    <tr>
+      <th>ISBN</th>
+      <th>Reader</th>
+			<th>Expected return date</th>
+			<th></th>
+    </tr>
+    <% (@expired_borrows.all.sort{ |a,b| b.expected_return_date <=> a.expected_return_date }).each do |borrow| %>
+    <tr>
+			<td>
+				<%= borrow.publication.ISBN %>
+			</td>
+			<td>
+				<%= borrow.get_user.email %>
+			</td>
+			<td>
+				<%= borrow.expected_return_date %>
+			</td>
+      <td>
+        <%= link_to 'Show', borrow, class:'btn btn-default' %>
+        <%= link_to 'Send notification', {controller: "borrows", action: "notify", id: borrow.id}, data: { confirm: 'Really send a notification?' }, class:'btn btn-danger' %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
+</div>

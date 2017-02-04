@@ -1,9 +1,0 @@
-<h2>Search results (<%= @users.count %>)</h2>
-
-<% (@users).each do |user| %>
-  <ul>
-    <li>
-      <%= link_to user.name, controller: 'users', action: 'show', id: user %>, <%= user.email %>
-    </li>
-  </ul>
-<% end %>
