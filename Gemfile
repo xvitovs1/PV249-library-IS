@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'railties', '~> 5.0', '>= 5.0.0.1'
+gem 'pg'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
