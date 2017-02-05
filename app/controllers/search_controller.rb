@@ -12,7 +12,8 @@ class SearchController < ApplicationController
   # Searches books.
   def search_books
     if !params['title'].empty? && !params['author'].empty?
-      @books = Book.joins(:author).where(["books.title like ? and authors.name like ?", '%' + params['title'] + '%','%'+ params['author']+'%']).take(100)
+      @books = Book.joins(:author).where(["LOWER(books.title) LIKE ? and LOWER(authors.name) LIKE ?",
+                                          '%' + params['title'].downcase + '%','%'+ params['author'].downcase + '%']).take(100)
     elsif !params['title'].empty?
       @books = search_books_by_title(params['title']).take(100)
     elsif !params['author'].empty?
@@ -37,39 +38,39 @@ class SearchController < ApplicationController
 
   # Searches borrows by user email.
   def search_borrows
-    @borrows = Borrow.joins("LEFT JOIN users ON borrows.reader_id = users.reader_id").where(["users.email LIKE ? ", params['email']]).take(100)
+    @borrows = Borrow.joins("LEFT JOIN users ON borrows.reader_id = users.reader_id").where(["users.email LIKE ? ", params['email'].downcase]).take(100)
   end
 
   # Searches books by ISBN.
   def search_books_by_isbn
-    @books = Book.joins(:publications).where(["publications.ISBN = ?", params['isbn']]).take(100)
+    @books = Book.joins(:publications).where(["LOWER(publications.ISBN) = ?", params['isbn'].downcase]).take(100)
   end
 
   # Searches books by title.
   # @param title title of the book
   private
   def search_books_by_title(title)
-    return Book.where(["title like ?", '%' + title + '%'])
+    return Book.where(["LOWER(title) like ?", '%' + title.downcase + '%'])
   end
 
   # Searches book by author.
   # @param author author's name
   private
   def search_books_by_author(author)
-    return Book.joins(:author).where(["authors.name LIKE ?", '%' + author + '%'])
+    return Book.joins(:author).where(["LOWER(authors.name) LIKE ?", '%' + author.downcase + '%'])
   end
 
   # Searches authors by name.
   # @param name auhor's name
   private
   def search_authors_by_name(name)
-    return Author.where(["name like ?", '%' + name + '%'])
+    return Author.where(["LOWER(name) LIKE ?", '%' + name.downcase + '%'])
   end
 
   # Searches publishers by name.
   # @param name publisher's name
   private
   def search_publishers_by_name(name)
-    return Publisher.where(["name like ?", '%' + name + '%'])
+    return Publisher.where(["LOWER(name) LIKE ?", '%' + name.downcase + '%'])
   end
 end
