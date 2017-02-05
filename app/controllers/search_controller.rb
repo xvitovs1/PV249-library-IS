@@ -4,45 +4,45 @@ class SearchController < ApplicationController
 
   # Searches book, authors and publishers.
   def search_all
-    @books = search_books_by_title(params['query'])
-    @authors = search_authors_by_name(params['query'])
-    @publishers = search_publishers_by_name(params['query'])
+    @books = search_books_by_title(params['query']).take(100)
+    @authors = search_authors_by_name(params['query']).take(100)
+    @publishers = search_publishers_by_name(params['query']).take(100)
   end
 
   # Searches books.
   def search_books
     if !params['title'].empty? && !params['author'].empty?
-      @books = Book.joins(:author).where(["books.title like ? and authors.name like ?", '%' + params['title'] + '%','%'+ params['author']+'%'])
+      @books = Book.joins(:author).where(["books.title like ? and authors.name like ?", '%' + params['title'] + '%','%'+ params['author']+'%']).take(100)
     elsif !params['title'].empty?
-      @books = search_books_by_title(params['title'])
+      @books = search_books_by_title(params['title']).take(100)
     elsif !params['author'].empty?
-      @books = search_books_by_author(params['author'])
+      @books = search_books_by_author(params['author']).take(100)
     end
   end
 
   # Searches authors by name.
   def search_authors
-    @authors = search_authors_by_name(params['name'])
+    @authors = search_authors_by_name(params['name']).take(100)
   end
 
   # Searches publishers by name.
   def search_publishers
-    @publishers = search_publishers_by_name(params['name'])
+    @publishers = search_publishers_by_name(params['name']).take(100)
   end
 
   # Searches users by email.
   def search_users
-    @users = User.where(["email like ?", '%' + params['email'].downcase + '%'])
+    @users = User.where(["email like ?", '%' + params['email'].downcase + '%']).take(100)
   end
 
   # Searches borrows by user email.
   def search_borrows
-    @borrows = Borrow.joins("LEFT JOIN users ON borrows.reader_id = users.reader_id").where(["users.email LIKE ? ", params['email']])
+    @borrows = Borrow.joins("LEFT JOIN users ON borrows.reader_id = users.reader_id").where(["users.email LIKE ? ", params['email']]).take(100)
   end
 
   # Searches books by ISBN.
   def search_books_by_isbn
-    @books = Book.joins(:publications).where(["publications.ISBN = ?", params['isbn']])
+    @books = Book.joins(:publications).where(["publications.ISBN = ?", params['isbn']]).take(100)
   end
 
   # Searches books by title.
