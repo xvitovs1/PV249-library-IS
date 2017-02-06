@@ -48,6 +48,10 @@ class BooksController < ApplicationController
 
   def destroy
     Book.destroy(params[:id])
-    redirect_to :back
+    if params[:author_id]
+      redirect_to controller: 'authors', action: 'show', id: params[:author_id]
+    else
+      redirect_to action: 'index'
+    end
   end
 end

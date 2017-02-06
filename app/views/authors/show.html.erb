@@ -27,7 +27,8 @@
         <% if current_user && current_user.librarian %>
           <td>
            <%= link_to 'Edit', edit_book_path(book, @author.id), class: 'btn btn-default'  %>
-           <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+           <%= link_to 'Remove', book_path(id: book.id, author_id: @author.id), method: :delete,
+           data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
           </td>
         <% end %>
       </tr>
