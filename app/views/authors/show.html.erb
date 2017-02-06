@@ -11,25 +11,29 @@
   <% end %>
 
   <p>
-  <table id="books_table" class="table">
-    <tr>
-      <th>Books</th>
-      <th></th>
-    </tr>
-    <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
-    <tr>
-      <td>
-      <%= link_to book.title, book %>
-      </td>
-      <% if current_user && current_user.librarian %>
+  <% if @author.books.empty? %>
+    There are no books by this author in our system.
+  <% else %>
+    <table id="books_table" class="table">
+      <tr>
+        <th>Books</th>
+        <th></th>
+      </tr>
+      <% (@author.books.sort{ |a,b| a.title.downcase <=> b.title.downcase }).each do |book| %>
+      <tr>
         <td>
-         <%= link_to 'Edit', edit_book_path(book, @author.id), class: 'btn btn-default'  %>
-         <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+        <%= link_to book.title, book %>
         </td>
+        <% if current_user && current_user.librarian %>
+          <td>
+           <%= link_to 'Edit', edit_book_path(book, @author.id), class: 'btn btn-default'  %>
+           <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+          </td>
+        <% end %>
+      </tr>
       <% end %>
-    </tr>
-    <% end %>
-  </table>
+    </table>
+  <% end %>
 </p>
 
 </div>
