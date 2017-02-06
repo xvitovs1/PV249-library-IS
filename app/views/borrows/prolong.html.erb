@@ -7,6 +7,8 @@
     <%= @user.email %>
   </div>
 
+  <% f.hidden_field :borrow_id, :value => @borrow.id %>
+
   <div class="form-group">
     <%= f.label :isbn %>
     <%= @borrow.publication.ISBN %>

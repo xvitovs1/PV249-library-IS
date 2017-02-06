@@ -23,8 +23,9 @@ class BorrowsController < ApplicationController
 
   # Used to end a borrow, book was returned.
   def return
-    @borrow = Borrow.update(params[:id], return_date: Date.today)
-    redirect_to :back
+    @borrow = Borrow.find(params[:id])
+    @borrow.update_attribute(:return_date, Date.today)
+    redirect_to action: 'show', id: @borrow.id
   end
 
   def show
@@ -43,8 +44,9 @@ class BorrowsController < ApplicationController
   end
 
   def update
+    @borrow = Borrow.find(params[:id])
     edate = Date.today.to_time.advance(months: get_num_months(params[:length])).to_date
-    @borrow = Borrow.update(params[:id], expected_return_date: edate)
+    @borrow.update_attribute(:expected_return_date, edate)
     redirect_to action: 'show', id: @borrow.id
   end
 
