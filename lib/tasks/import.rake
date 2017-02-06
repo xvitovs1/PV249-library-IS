@@ -5,9 +5,10 @@ require 'csv'
 # Broken rows must be removed before running this task.
 
 namespace :import do
-  desc "Imports books from given csv file"
-  task :import_books_from_csv, [:file] => :environment do |t, args|
-    books_csv = CSV.read(args[:file], { :col_sep => ";", :skip_blanks => true, :encoding => 'ISO-8859-2' })
+  desc 'Imports books from given csv file'
+  task :import_books_from_csv, [:file] => :environment do |_, args|
+    books_csv = CSV.read(args[:file], col_sep: ';', skip_blanks: true,
+                         encoding: 'ISO-8859-2')
     save_to_db(books_csv)
   end
 
@@ -17,7 +18,8 @@ private
 # @param parsed_csv parsed csv file with books
 def save_to_db(parsed_csv)
   parsed_csv.each do |record|
-    next unless !record[0].end_with?("X")
+    if record[0].end_with?("X")
+      next
     author = Author.find_by name: record[2]
     if !author
       author = Author.new(name: record[2])
