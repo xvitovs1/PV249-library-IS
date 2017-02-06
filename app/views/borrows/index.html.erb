@@ -38,7 +38,7 @@
 			</td>
       <td>
         <%= link_to 'Show', borrow, class:'btn btn-default' %>
-        <%= link_to 'Send notification', {controller: "borrows", action: "notify", id: borrow.id}, data: { confirm: 'Really send a notification?' }, class:'btn btn-danger' %>
+        <%= mail_to borrow.get_user.email, 'Send notification', class:'btn btn-danger' %>
       </td>
     </tr>
     <% end %>

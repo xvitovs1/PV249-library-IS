@@ -21,13 +21,6 @@ class BorrowsController < ApplicationController
     end
   end
 
-  # Used to send a notification because of expired borrow.
-  def notify
-    @borrow = Borrow.find(params[:id])
-    ExpiredBorrowNotifier.send_expired_borrow_email(@borrow)
-    redirect_to :back
-  end
-
   # Used to end a borrow, book was returned.
   def return
     @borrow = Borrow.update(params[:id], return_date: Date.today)

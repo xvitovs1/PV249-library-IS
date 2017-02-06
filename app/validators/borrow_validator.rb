@@ -3,11 +3,11 @@
 class BorrowValidator < ActiveModel::Validator
   def validate(record)
     publication = Publication.find_by id: record.publication_id
-    if !publication
+    unless publication
       record.errors[:publication] << 'Publication must exist!'
       return
     end
-    if !publication.available?
+    unless publication.available?
       record.errors[:publication] << 'This publication is already borrowed!'
     end
   end
