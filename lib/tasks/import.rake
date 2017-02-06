@@ -20,6 +20,7 @@ def save_to_db(parsed_csv)
   parsed_csv.each do |record|
     if record[0].end_with?("X")
       next
+    end
     author = Author.find_by name: record[2]
     if !author
       author = Author.new(name: record[2])
