@@ -1,3 +1,4 @@
+# Controller for user sessions.
 class SessionsController < ApplicationController
   def new
   end
@@ -10,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-    # If user's login is not correct, redirect to the login form.
+      # If user's login is not correct, redirect to the login form.
       redirect_to '/login'
     end
   end

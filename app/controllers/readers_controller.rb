@@ -1,5 +1,5 @@
+# Controller for readers.
 class ReadersController < ApplicationController
-
   before_action :authorize_librarians
 
   def new

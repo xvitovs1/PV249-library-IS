@@ -1,6 +1,7 @@
+# Controller for authors.
 class AuthorsController < ApplicationController
-
-  before_action :authorize_librarians, only: [:new, :add, :create, :edit, :update, :destroy]
+  before_action :authorize_librarians,
+                only: [:new, :add, :create, :edit, :update, :destroy]
 
   def index
     @authors = Author.order(:name)
@@ -14,7 +15,7 @@ class AuthorsController < ApplicationController
   def add
     @author = Author.new(name: params[:name])
     @author.save
-		render :json => { :status => :ok, :message => "Success!", :author_id => @author.id }
+    render json: { status: :ok, message: 'Success!', author_id: @author.id }
   end
 
   def create
@@ -37,14 +38,14 @@ class AuthorsController < ApplicationController
   def update
     @author = Author.update(params[:id], name: params[:author][:name])
     if @author.valid?
-      redirect_to action: "show", id: @author.id
+      redirect_to action: 'show', id: @author.id
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     Author.destroy(params[:id])
-    redirect_to action: "index"
+    redirect_to action: 'index'
   end
 end

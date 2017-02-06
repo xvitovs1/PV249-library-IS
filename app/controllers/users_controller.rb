@@ -1,5 +1,5 @@
+# Controller for users.
 class UsersController < ApplicationController
-
   before_action :authorize_librarians, only: [:index, :show, :destroy]
   before_action :authorize, only: [:profile, :edit, :update]
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.destroy(params[:id])
-    redirect_to action: "index"
+    redirect_to action: 'index'
   end
 
   def edit
@@ -39,19 +39,26 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.update(params[:id], name: params[:user][:name], email: params[:user][:email], password: params[:user][:password],
-                        password_confirmation: params[:user][:password_confirmation], city: params[:user][:city], street: params[:user][:street],
-                        postcode: params[:user][:postcode], birthday: params[:birthdayPicker_birthDay])
+    @user = User.update(params[:id], name: params[:user][:name],
+                                     email: params[:user][:email],
+                                     password: params[:user][:password],
+                                     password_confirmation: params[:user][:password_confirmation],
+                                     city: params[:user][:city], street: params[:user][:street],
+                                     postcode: params[:user][:postcode],
+                                     birthday: params[:birthdayPicker_birthDay])
     if @user.valid?
-      redirect_to action: "profile"
+      redirect_to action: 'profile'
     else
-      render "edit"
+      render 'edit'
     end
   end
 
-  # Get parameters from the user form.
   private
+
+  # Get parameters from the user form.
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :city, :street, :postcode)
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation, :city,
+                                 :street, :postcode)
   end
 end

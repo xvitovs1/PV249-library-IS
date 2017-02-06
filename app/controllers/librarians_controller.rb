@@ -1,5 +1,5 @@
+# Controller for librarian accounts.
 class LibrariansController < ApplicationController
-
   before_action :authorize_librarians, only: [:show]
   before_action :authorize_admin, only: [:destroy, :create, :new, :update]
 

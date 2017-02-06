@@ -1,5 +1,5 @@
+# Controller for publications.
 class PublicationsController < ApplicationController
-
   before_action :authorize_librarians
 
   def new
@@ -8,14 +8,16 @@ class PublicationsController < ApplicationController
   end
 
   def create
-    @publication = Publication.new(ISBN: params[:publication][:ISBN], year: params[:publication][:year],
+    @publication = Publication.new(ISBN: params[:publication][:ISBN],
+                                   year: params[:publication][:year],
                                    book_id: params[:publication][:book],
                                    publisher_id: params[:publication][:publisher])
     if @publication.save
-      redirect_to controller:'books', action: 'show', id: params[:publication][:book]
+      redirect_to controller: 'books', action: 'show',
+                  id: params[:publication][:book]
     else
       @book = Book.find(params[:publication][:book])
-      render "new"
+      render 'new'
     end
   end
 
@@ -25,12 +27,14 @@ class PublicationsController < ApplicationController
 
   def update
     @publication = Publication.update(
-      params[:id], ISBN: params[:publication][:ISBN], year: params[:publication][:year], book_id: params[:publication][:book],
-      publisher_id: params[:publication][:publisher])
+      params[:id], ISBN: params[:publication][:ISBN],
+                   year: params[:publication][:year],
+                   book_id: params[:publication][:book],
+                   publisher_id: params[:publication][:publisher])
     if @publication.valid?
-      redirect_to controller: "books", action: "show", id: @publication.book.id
+      redirect_to controller: 'books', action: 'show', id: @publication.book.id
     else
-      render "edit"
+      render 'edit'
     end
   end
 

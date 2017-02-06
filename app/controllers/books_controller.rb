@@ -1,6 +1,7 @@
+# Controller for books actions.
 class BooksController < ApplicationController
-
-  before_action :authorize_librarians, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_librarians,
+                only: [:new, :create, :edit, :update, :destroy]
 
   def index
   end
@@ -13,14 +14,16 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(title: params[:book][:title], author_id: params[:book][:author], description: params[:book][:description])
+    @book = Book.new(title: params[:book][:title],
+                     author_id: params[:book][:author],
+                     description: params[:book][:description])
     if @book.save
-      redirect_to action: "show", id: @book.id
+      redirect_to action: 'show', id: @book.id
     else
       if params[:book][:author]
         @author = Author.find(params[:book][:author])
       end
-      render "new"
+      render 'new'
     end
   end
 
@@ -33,11 +36,13 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.update(params[:id], title: params[:book][:title], description: params[:book][:description], author_id: params[:book][:author])
+    @book = Book.update(params[:id], title: params[:book][:title],
+                        description: params[:book][:description],
+                        author_id: params[:book][:author])
     if @book.valid?
-      redirect_to action: "show", id: @book.id
+      redirect_to action: 'show', id: @book.id
     else
-      render "edit"
+      render 'edit'
     end
   end
 
