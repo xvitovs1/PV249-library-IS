@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/librarians/denied', to: 'librarians#denied'
   get '/signup', to: 'users#new'
   get '/user/profile', to: 'users#profile'
+  get 'users/:id/borrows/new', to: 'borrows#new'
   get '/borrows/:id/return', to: 'borrows#return'
   get '/borrows/:id/prolong', to: 'borrows#prolong'
   post '/publications/search', to: 'publications#search'
