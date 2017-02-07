@@ -49,9 +49,8 @@ class SearchController < ApplicationController
 
   # Searches books by ISBN.
   def search_books_by_isbn
-    @books = Book.joins(:publications)
-                 .where(['LOWER(publications.ISBN) = ?',
-                         params['isbn'].downcase]).take(100)
+    @publications = Publication.where(['LOWER(ISBN) = ?',
+                                       params['isbn'].downcase])
   end
 
   private

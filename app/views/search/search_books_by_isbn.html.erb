@@ -1,1 +1,7 @@
-<%= render 'books_results', books: @books %>
+<h2>Search results (<%= @publications.count %>)</h2>
+
+<% @publications.each do |p| %>
+  <ul>
+    <li><%= link_to p.ISBN, p.book %></li>
+  </ul>
+<% end %>
