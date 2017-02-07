@@ -10,7 +10,7 @@
 			<th>(Expected) return date</th>
 			<th></th>
     </tr>
-    <% (@borrows.all.sort{ |a,b| a.borrow_date <=> b.borrow_date }).each do |borrow| %>
+    <% (@borrows.sort{ |a,b| a.borrow_date <=> b.borrow_date }).each do |borrow| %>
     <tr>
 			<td>
 				<%= borrow.publication.ISBN %>
