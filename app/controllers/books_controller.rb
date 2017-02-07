@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to action: 'show', id: @book.id
     else
-      if params[:book][:author]
+      if !params[:book][:author].empty?
         @author = Author.find(params[:book][:author])
       end
       render 'new'
