@@ -34,6 +34,7 @@ class ReadersController < ApplicationController
 
   def destroy
     user = User.find_by reader_id: params[:id]
+    user.update_attribute(:reader_id, nil)
     Reader.destroy(params[:id])
     redirect_to controller: 'users', action: 'show', id: user.id
   end
