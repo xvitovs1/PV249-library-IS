@@ -65,14 +65,14 @@
   <% end %>
   <% if @user.librarian %>
     <h3>Librarian's account</h3>
-    <% if @user.admin? %>
+    <% if current_user.admin? %>
       <%= link_to 'Edit', edit_librarian_path(id: @user.librarian), class: 'btn btn-default' %>
       <%= link_to 'Remove', @user.librarian, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
     <% end %>
     <p>
       Card code: <%= @user.librarian.card_code %>
     </p>
-  <% elsif @user.admin? %>
+  <% elsif current_user.admin? %>
     <%= link_to "Add librarian's account", controller: 'librarians', action: 'new', id: @user %>
   <% end %>
 </div>
