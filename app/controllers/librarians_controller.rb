@@ -30,9 +30,9 @@ class LibrariansController < ApplicationController
 
   def update
     @librarian = Librarian.update(params[:id], card_code: params[:librarian][:card_code])
+    @user = User.find_by librarian_id: @librarian.id
     if @librarian.valid?
-      user = User.find_by librarian_id: @librarian.id
-      redirect_to controller: 'users', action: 'show', id: user.id
+      redirect_to controller: 'users', action: 'show', id: @user.id
     else
       render 'edit'
     end

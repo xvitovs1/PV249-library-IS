@@ -24,9 +24,9 @@ class ReadersController < ApplicationController
 
   def update
     @reader = Reader.update(params[:id], card_code: params[:reader][:card_code])
+    @user = User.find_by reader_id: @reader.id
     if @reader.valid?
-      user = User.find_by reader_id: @reader.id
-      redirect_to controller: 'users', action: 'show', id: user.id
+      redirect_to controller: 'users', action: 'show', id: @user.id
     else
       render 'edit'
     end
