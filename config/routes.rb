@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'main_page/index'
   root 'main_page#index'
-  get 'users/new'
-  get 'users/create'
 
   get 'contact/', to: 'contact#index'
 
@@ -22,15 +20,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/librarians/denied', to: 'librarians#denied'
-
   get '/signup', to: 'users#new'
   get '/user/profile', to: 'users#profile'
-  get '/users/:id/readers/new', to: 'readers#new'
-  get '/users/:id/librarians/new', to: 'librarians#new'
-  get '/users/:id/borrows/new', to: 'borrows#new'
-
   get '/borrows/:id/return', to: 'borrows#return'
   get '/borrows/:id/prolong', to: 'borrows#prolong'
+  post '/publications/search', to: 'publications#search'
 
   resources :authors
   resources :books
