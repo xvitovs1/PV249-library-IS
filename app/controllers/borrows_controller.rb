@@ -10,7 +10,7 @@ class BorrowsController < ApplicationController
 
   def create
     edate = Date.today.to_time.advance(months: get_num_months(params[:length])).to_date
-    @borrow = Borrow.new(publication_id: params[:borrow][:publication_id],
+    @borrow = Borrow.new(publication_id: params[:publication_id],
                          borrow_date: Date.today, expected_return_date: edate,
                          reader_id: params[:reader_id])
     if @borrow.save

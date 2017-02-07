@@ -28,10 +28,6 @@ ready = ->
     language: noResults: -> "<input class='btn btn-default' id='add-publisher' type='button' value='Add publisher'>"
     escapeMarkup: (m) -> m
 
-  $select_book.select2
-    placeholder: 'Select a book'
-    language: noResults: -> "Book with this ISBN is not available."
-
   $(document).on 'click', '#add-author', () ->
     $select_author = $('.select-author')
     author_name = $select_author.data('select2').$dropdown.find('input').val()
@@ -47,5 +43,5 @@ ready = ->
       newOption = new Option(publisher_name, payload.publisher_id, false, true);
       $select_publisher.append(newOption).trigger('change');
       $select_publisher.select2('close');
-      
+
 $(document).on('turbolinks:load', ready)

@@ -38,6 +38,14 @@ class PublicationsController < ApplicationController
     end
   end
 
+  def search
+    @publications = Publication.select(:id, :ISBN, :book_id).where("\"ISBN\" like :q", q: "#{params[:ISBN]}%")
+    respond_to do |format|
+      format.json { render json:
+                  {results: @publications.map{ |p| { id: p.id, text: p.ISBN + ' (' + p.book.title  + ')'} }}}
+    end
+  end
+
   def destroy
     Publication.destroy(params[:id])
     redirect_to :back

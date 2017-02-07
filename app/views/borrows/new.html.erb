@@ -20,9 +20,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :isbn %>
-    <%= f.select :publication_id,
-      (Publication.all.select{ |p| p.available? }).collect{|b| [b.ISBN + ' (' + b.book.title + ')', b.id]}, {include_blank: true}, {:class => 'form-control select-isbn' } %>
+    <select id="ddlisbn" class="js-data-ddl-ajax" name="publication_id" style="width: 300px">
+       <option selected="selected" style="width: 400px">Search publications by ISBN</option>
+    </select>
   </div>
 
   <div class="form-group">
