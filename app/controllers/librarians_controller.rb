@@ -40,6 +40,7 @@ class LibrariansController < ApplicationController
 
   def destroy
     user = User.find_by librarian_id: params[:id]
+    user.update_attribute(:librarian_id, nil)
     Librarian.destroy(params[:id])
     redirect_to controller: 'users', action: 'show', id: user.id
   end
